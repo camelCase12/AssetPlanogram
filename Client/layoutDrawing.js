@@ -6,7 +6,7 @@ class InfoTable {
     static descriptions = []; // Entry list of description for each zone
     static positions = []; // Array of 4-tuples indiciating x,y (left, top) and width,height of each zone
     static items = []; // Array of items contained in each zone
-    static orientations = []; // Array of orientations (right, down, up, left)
+    static rotations = []; // Array of orientations (right, down, up, left)
     static zones = [];
     static constructor() {
         //Load in data from database
@@ -133,28 +133,30 @@ function handleClick(event) {
 function zoneImport() {
     target = document.getElementById("arbitraryImport");
     console.log("fetch attempted");
-    /*fetch('zones.json')
+    fetch('zones.json')
     .then(response => response.json())
     .then(json => {
         console.log(json);
-    });*/
-    fetch('zones.json', {
-        method: "GET",
-        headers: {
-            "Accept": "application/json"
+        var count = Object.keys(json).length;
+        console.log(count);
+        InfoTable.zoneCount = count;
+        for(let i = 0; i < count; i++) {
+            InfoTable.names.push(json[i].name);
+            InfoTable.ids.push(json[i]._id);
+            InfoTable.contents.push(json[i].content);
+            InfoTable.positions.push(json[i].position);
+            InfoTable.rotations.push(json[i].rotation);
         }
-    })
-    .then(response => {
-        return response.json();
-    })
-    .then(data => {
-        console.log(data);
-        return data;
-    })
-    .catch(error => {
-        console.log(error);
-        return error;
+        for(let i = 0; i < InfoTable.zoneCount; i++) {
+            position = InfoTable.positions[i];
+            InfoTable.zones.push(new zone(InfoTable.names[i],
+                 InfoTable.ids[i],
+                  InfoTable.contents[i],
+                   position[0], position[1], position[2], position[3],
+                    InfoTable.rotations[i]));
+        }
     });
+
 }
 
 function drawStandard() {
@@ -162,7 +164,6 @@ function drawStandard() {
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    pseudoImport();
     let extraZone;
     for(let i = 0; i < InfoTable.zoneCount; i++) {
         let extraZoneBuffer = InfoTable.zones[i].draw(ctx); // this might be my favorite workaround ever

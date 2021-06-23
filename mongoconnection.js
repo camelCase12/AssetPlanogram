@@ -16,9 +16,9 @@ async function getZones() {
         await client.connect();
         const database = client.db('AssetPlanogram');
         const zones = database.collection('AssetCollection');
-        const query = { _id: 1 };
-        const zone = await zones.findOne(query);
-        //console.log(zone);
+        const query = { _id: {"$exists":true} };
+        const zone = await zones.find(query).toArray();
+        console.log(zone);
         return zone;
     } catch (e) {
         console.error(e);
