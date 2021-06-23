@@ -36,6 +36,29 @@ input {
     margin-bottom: 20px;
 }
 
+.ButtonGroup {
+    padding:5px;
+}
+
+.Button {
+    border:2px solid #f4ebd9;
+    border-radius: 3px;
+    font-family: Helvetica, sans-serif;
+    font-size:large;
+    background-color: #444444;
+    margin: 5px;
+    color: #f4ebd9;
+}
+
+.Button:hover {
+    background-color: #888888;
+}
+
+.Button:active {
+    background-color: #888888;
+    border-color: #00FFFF;
+}
+
 .Title {
     font-family: Helvetica, sans-serif;
     background-color: #444444;
