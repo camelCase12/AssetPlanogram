@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Asset Planogram</title>
+        <link rel="stylesheet" href="./styles.css">
+        <script src="layoutDrawing.js"></script>
+    </head>
+    <body onload="drawStandard()">
+        <h1 name = "Page Header" class="Title">Asset Planogram</h1>
+        <div name = "Search Bar" class = "Center">
+            <div name = "Inner Search Bar" class = "SearchBar Card">
+                <label for="search" class="Text">Search for items: </label>
+                <input type="text" id="search" name="search">
+                <br><br>
+                <label for="viewMode" class="Text">Select view mode: </label>
+                <label for="viewModeStandard" class="Text">Standard:</label>
+                <input type="radio" id="viewModeStandard" name="viewMode" onchange="drawStandard()">
+                <label for="viewModeModify" class="Text">Modify:</label>
+                <input type="radio" id="viewModeModify" name="viewMode" onchange="drawModify()">
+                <label for="viewModeIDs" class="Text">IDs:</label>
+                <input type="radio" id="viewModeIDs" name="viewMode" onchange="drawIDs()">
+            </div>
+        </div>
+        <div name="Visual Layout" class="VisualLayout">
+            <canvas id="LayoutCanvas" class="LayoutCanvas Card" width="650" height="650" onmousemove="handleMovement(event)"" onmousedown="handleClick(event)"></canvas>
+            <div class="Data Card">
+                <div class="DataBody">
+                    <label for="name" class="Text DataEntries">Name</label>
+                    <input type="text" id="name" name="name" style="float: left; margin-left: 5px;" readonly>
+                    <br><br>
+                    <label for="id" class="Text DataEntries">ID</label>
+                    <input type="text" id="id" name="id" style="float: left; margin-left: 5px;" readonly>
+                    <br><br>
+                    <label for="content" class="Text DataEntries">Content</label>
+                    <input type="text" id="content" name="content" style="float: left; margin-left: 5px;" readonly>
+                    <br><br>
+                    <label for="description" class="Text DataEntries">Description</label>
+                    <input type="text" id="description" name="description" style="float: left; margin-left: 5px;" readonly>
+                    <br><br>
+                    <label for="items" class="Text DataEntries">Items</label>
+                    <input type="text" id="items" name="items" style="float: left; margin-left: 5px;" readonly>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

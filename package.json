@@ -1,0 +1,16 @@
+{
+  "name": "assetplanogramweb",
+  "version": "1.0.0",
+  "description": "assetplanogramweb",
+  "main": "app.js",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "chasebrower",
+  "license": "ISC"
+}
