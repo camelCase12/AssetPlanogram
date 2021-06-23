@@ -4,6 +4,7 @@
   "description": "assetplanogramweb",
   "main": "app.js",
   "dependencies": {
+    "mongodb": "^3.6.9",
     "mysql": "^2.18.1"
   },
   "devDependencies": {},
