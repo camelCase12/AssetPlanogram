@@ -1,6 +1,12 @@
 const {MongoClient} = require('mongodb');
 
-getZones().catch(console.error);
+//getZones().catch(console.error);
+
+module.exports = {
+    zones: function() {
+        return getZones();
+    }
+};
 
 async function getZones() {
     const uri = "mongodb+srv://m001-student:m001-mongodb-basics@cluster0.jbs6s.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
@@ -12,7 +18,8 @@ async function getZones() {
         const zones = database.collection('AssetCollection');
         const query = { _id: 1 };
         const zone = await zones.findOne(query);
-        console.log(zone);
+        //console.log(zone);
+        return zone;
     } catch (e) {
         console.error(e);
     } finally {

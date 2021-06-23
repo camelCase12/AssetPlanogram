@@ -1,6 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const mongoconnection = require('./mongoconnection.js');
 //const mysql = require('mysql');
 
 const hostname = '127.0.0.1';
@@ -20,7 +21,7 @@ mysqlCon.connect(function(error) {
 
 //HTML/JS/CSS fetch--------
 const server = http.createServer((req, res) => {
-    console.log("request made: " + req.url);
+    //console.log("request made: " + req.url);
     if(req.url === "/") {
         fs.readFile('./Client/index.html', null, function (error, data) {
             if (error) {
@@ -42,6 +43,15 @@ const server = http.createServer((req, res) => {
         var fileStream = fs.createReadStream(jsPath, "UTF-8");
         res.writeHead(200, {"Content-type": "text/js"});
         fileStream.pipe(res);
+    } else if (req.url.match("\.json$")) {
+        responseData = mongoconnection.zones().then(response => {
+            res.setHeader('Content-Type', 'application/json');
+            //console.log("Response Data: " + JSON.stringify(response));
+            res.write(JSON.stringify(response));
+            res.end();
+        }).catch(error => { console.log(error) });
+    } else {
+        console.log("Unable to fulfill request: " + req.url);
     }
 });
 

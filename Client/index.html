@@ -16,11 +16,12 @@
                     <button type="text" id="viewModeStandard" name="viewMode" class="Button" onclick="drawStandard()">Standard View</button>
                     <button type="text" id="viewModeModify" name="viewMode" class="Button" onclick="drawModify()">Modification View</button>
                     <button type="text" id="viewModeIDs" name="viewMode" class="Button" onclick="drawIDs()">ID View</button>
+                    <button type="text" id="arbitraryImport" name="arbitraryImport" class="Button" onclick="zoneImport()">Import Zones</button>
                 </div>
             </div>
         </div>
         <div name="Visual Layout" class="VisualLayout">
-            <canvas id="LayoutCanvas" class="LayoutCanvas Card" width="650" height="650" onmousemove="handleMovement(event)"" onmousedown="handleClick(event)"></canvas>
+            <canvas id="LayoutCanvas" class="LayoutCanvas Card" width="650" height="650" onmousemove="handleMovement(event)" onmousedown="handleClick(event)"></canvas>
             <div class="Data Card">
                 <div class="DataBody">
                     <label for="name" class="Text DataEntries">Name</label>

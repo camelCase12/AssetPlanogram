@@ -129,6 +129,34 @@ function handleClick(event) {
     }
 }
 
+
+function zoneImport() {
+    target = document.getElementById("arbitraryImport");
+    console.log("fetch attempted");
+    /*fetch('zones.json')
+    .then(response => response.json())
+    .then(json => {
+        console.log(json);
+    });*/
+    fetch('zones.json', {
+        method: "GET",
+        headers: {
+            "Accept": "application/json"
+        }
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+        return data;
+    })
+    .catch(error => {
+        console.log(error);
+        return error;
+    });
+}
+
 function drawStandard() {
     var canvas = document.getElementById("LayoutCanvas");
     var ctx = canvas.getContext("2d");
