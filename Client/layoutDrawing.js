@@ -156,7 +156,7 @@ function zoneImport() {
                     InfoTable.rotations[i]));
         }
     });
-
+    drawStandard(); // modify to follow enum from InfoTable
 }
 
 function drawStandard() {
