@@ -20,7 +20,19 @@ const server = http.createServer((req, res) => {
             }
             res.end();
         });
-    } else if (req.url.match("\.css$")) {
+    } else if (req.url.match("\.html")) {
+        fs.readFile(path.join('./Client', req.url), null, function (error, data) {
+            if (error) {
+                res.writeHead(404);
+                res.write('File not found');
+            } else {
+                res.writeHead(200, {'Content-type': 'text/html'});
+                res.write(data);
+            }
+            res.end();
+        });
+    } 
+    else if (req.url.match("\.css$")) {
         var cssPath = path.join('./Client', req.url);
         var fileStream = fs.createReadStream(cssPath, "UTF-8");
         res.writeHead(200, {"Content-type": "text/css"});
