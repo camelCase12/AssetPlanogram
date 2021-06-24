@@ -155,8 +155,8 @@ function zoneImport() {
                    position[0], position[1], position[2], position[3],
                     InfoTable.rotations[i]));
         }
+        drawStandard(); // modify to follow enum from InfoTable
     });
-    drawStandard(); // modify to follow enum from InfoTable
 }
 
 function drawStandard() {
