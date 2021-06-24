@@ -2,26 +2,13 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const mongoconnection = require('./mongoconnection.js');
-//const mysql = require('mysql');
 
 const hostname = '127.0.0.1';
 const port = process.env.PORT || 3000;
 
-//MYSQL------------------
-/*var mysqlCon = mysql.createConnection({
-    host: "localhost",
-    user: "bruh",
-    password: "securePassword"
-});
-
-mysqlCon.connect(function(error) {
-    if(error) throw error;
-    console.log("Connect to mysql");
-})*/
-
 //HTML/JS/CSS fetch--------
 const server = http.createServer((req, res) => {
-    //console.log("request made: " + req.url);
+    console.log("request made: " + req.url);
     if(req.url === "/") {
         fs.readFile('./Client/index.html', null, function (error, data) {
             if (error) {
