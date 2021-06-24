@@ -129,7 +129,6 @@ function handleClick(event) {
     }
 }
 
-
 function zoneImport() {
     target = document.getElementById("arbitraryImport");
     console.log("fetch attempted");
@@ -157,6 +156,36 @@ function zoneImport() {
         }
         drawStandard(); // modify to follow enum from InfoTable
     });
+}
+
+function zoneExport() {
+    const dataToSend = JSON.stringify({"email": "hey@mail.com", "password": "101010"});
+    let dataReceived = ""; 
+
+    fetch("/zoneExport", {
+        credentials: "same-origin",
+        mode: "same-origin",
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: dataToSend
+    })
+    .then(resp => {
+        if (resp.status === 200) {
+            return resp.json()
+        } else {
+            console.log("Status: " + resp.status);
+            return Promise.reject("server");
+        }
+    })
+    .then(dataJson => {
+        dataReceived = JSON.parse(dataJson)
+    })
+    .catch(err => {
+        if (err === "server") return
+        console.log(err)
+    });
+
+    console.log(`Received: ${dataReceived}`)  ;
 }
 
 function drawStandard() {

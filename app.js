@@ -1,5 +1,6 @@
 const http = require('http');
 const fs = require('fs');
+var qs = require('querystring');
 const path = require('path');
 const mongoconnection = require('./mongoconnection.js');
 
@@ -49,6 +50,20 @@ const server = http.createServer((req, res) => {
             res.write(JSON.stringify(response));
             res.end();
         }).catch(error => { console.log(error) });
+    } else if (req.url.match("zoneExport")) {
+        console.log("Received POST request");
+        var body = '';
+        req.on('data', function(data) {
+            body += data;
+            if(body.length > 1e7) {
+                response.writeHead(413, 'Request Too Big', {'Content-Type': 'text/html'});
+                response.end('<!doctype html><html><head><title>413</title></head><body>413: Request Entity Too Large</body></html>');
+            }
+        });
+        req.on('end', function() {
+            var receivedData = qs.parse(body);
+            console.log(receivedData);
+        })
     } else {
         console.log("Unable to fulfill request: " + req.url);
     }
